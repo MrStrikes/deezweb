@@ -6,7 +6,7 @@
           <div class="navbar-start">
             <router-link to="/" class="navbar-item">Home</router-link>
             <router-link to="/search" class="navbar-item">Search a song</router-link>
-            <router-link to="/about" class="navbar-item">About</router-link>
+            <router-link to="/favorites" class="navbar-item">See my favorites songs</router-link>
           </div>
         </div>
       </nav>
