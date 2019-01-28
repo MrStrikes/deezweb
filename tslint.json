@@ -18,6 +18,8 @@
     "trailing-comma": [true, {
       "multiline": "never",
       "singleline": "never"
-    }]
+    }],
+    "arrow-parens": false,
+    "no-console": false
   }
 }
