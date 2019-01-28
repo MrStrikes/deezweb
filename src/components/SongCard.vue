@@ -1,7 +1,8 @@
 <template>
   <article class="song-card">
     <figure>
-      <img :src="track.album.cover">
+      <img :src="track.album.cover" :alt="`Cover of the album or single ${track.album.title}`">
+      <font-awesome-icon :icon="['fas', 'star']" @click.prevent="saveToFavorites(track)"/>
     </figure>
     <div>
       <h1 v-if="track.title !== track.album.title">Album: {{ track.album.title }}</h1>
@@ -17,11 +18,19 @@
 <script lang="ts">
 import Vue from "vue";
 import { AlbumInterface } from "@/interfaces/AlbumInterface";
+import { saveToFavorites, getFavorites } from "@/service/ActionService";
 
 export default Vue.extend({
   name: "SongCard",
   props: {
     track: Object as () => AlbumInterface
+  },
+  methods: {
+    async saveToFavorites(trackData: any) {
+      let faved = getFavorites();
+      faved.push(trackData);
+      await saveToFavorites(faved);
+    }
   }
 });
 </script>
@@ -43,6 +52,7 @@ export default Vue.extend({
   text-align: center;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .song-card > figure > img {
   display: block;
