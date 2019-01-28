@@ -2,16 +2,24 @@
   <div class="search-main">
     <section class="research">
       <b-field class="search" label="Search">
-        <b-input placeholder="Search..." type="search" icon="magnify" @input="debounceInput"></b-input>
+        <b-input
+          placeholder="Search..."
+          type="search"
+          icon-pack="fas"
+          icon="search"
+          @input="debounceInput"
+        ></b-input>
       </b-field>
 
       <b-field label="Type">
-        <b-select v-model="type" required>
+        <b-select v-model="type" @input="debounceInput" required>
           <option v-for="(type, index) in types" :key="index" :value="type">{{ type }}</option>
         </b-select>
       </b-field>
     </section>
-    <song-card :track="result"/>
+    <div class="users">
+      <song-card v-for="(track, index) in result" :key="index" :track="track"/>
+    </div>
   </div>
 </template>
 
@@ -31,7 +39,7 @@ export default Vue.extend({
       search: "" as string,
       types: ["artist", "album", "track"] as Array<string>,
       type: "artist" as string,
-      result: [] as AlbumInterface[]
+      result: [] as Array<AlbumInterface>
     };
   },
   methods: {
@@ -53,5 +61,10 @@ export default Vue.extend({
 }
 .search {
   margin: 0 20px 0 0;
+}
+.users {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 25px;
 }
 </style>
