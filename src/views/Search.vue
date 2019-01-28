@@ -17,7 +17,7 @@
         </b-select>
       </b-field>
     </section>
-    <div class="users">
+    <div class="songs">
       <song-card v-for="(track, index) in result" :key="index" :track="track"/>
     </div>
   </div>
@@ -62,7 +62,7 @@ export default Vue.extend({
 .search {
   margin: 0 20px 0 0;
 }
-.users {
+.songs {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 25px;
