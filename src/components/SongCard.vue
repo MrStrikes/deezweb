@@ -5,7 +5,10 @@
     </figure>
     <div>
       <h1 v-if="track.title !== track.album.title">Album: {{ track.album.title }}</h1>
-      <p>Track name: {{ track.title }}</p>
+      <p>
+        <strong>{{ track.artist.name }}</strong>
+        / {{ track.title }}
+      </p>
       <audio :src="track.preview" controls></audio>
     </div>
   </article>
