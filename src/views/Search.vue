@@ -1,5 +1,6 @@
 <template>
-  <div class="home">
+  <div class="search-main">
+    <search-bar/>
     <song-card/>
   </div>
 </template>
@@ -7,17 +8,15 @@
 <script lang="ts">
 import Vue from "vue";
 import SongCard from "@/components/SongCard.vue";
-import instance from "@/service/ApiService";
-import axios from "axios";
+import SearchBar from "@/components/SearchBar.vue";
 
 export default Vue.extend({
-  name: "home",
   components: {
-    SongCard
-  },
-  data() {
-    return {};
-  },
-  methods: {}
+    SongCard,
+    SearchBar
+  }
 });
 </script>
+
+<style>
+</style>

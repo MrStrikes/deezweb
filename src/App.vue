@@ -5,7 +5,7 @@
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
             <router-link to="/" class="navbar-item">Home</router-link>
-
+            <router-link to="/search" class="navbar-item">Search an artist</router-link>
             <router-link to="/about" class="navbar-item">About</router-link>
           </div>
         </div>
