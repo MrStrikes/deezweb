@@ -2,7 +2,8 @@
   <article class="song-card">
     <figure>
       <img :src="track.album.cover" :alt="`Cover of the album or single ${track.album.title}`">
-      <font-awesome-icon :icon="['fas', 'star']" @click.prevent="saveToFavorites(track)"/>
+      <!--<font-awesome-icon :icon="['fas', 'star']" @click.prevent="saveToFavorites(track)"/>-->
+      <font-awesome-icon :icon="['fas', 'star']" @click.prevent="isInFavorites(track)"/>
     </figure>
     <div>
       <h1 v-if="track.title !== track.album.title">Album: {{ track.album.title }}</h1>
@@ -18,7 +19,11 @@
 <script lang="ts">
 import Vue from "vue";
 import { AlbumInterface } from "@/interfaces/AlbumInterface";
-import { saveToFavorites, getFavorites } from "@/service/ActionService";
+import {
+  saveToFavorites,
+  getFavorites,
+  isInFavorites
+} from "@/service/ActionService";
 
 export default Vue.extend({
   name: "SongCard",
@@ -27,9 +32,12 @@ export default Vue.extend({
   },
   methods: {
     async saveToFavorites(trackData: any) {
-      let faved = getFavorites();
+      let faved: [AlbumInterface] = getFavorites();
       faved.push(trackData);
       await saveToFavorites(faved);
+    },
+    async isInFavorites(track: Object) {
+      let data = isInFavorites(track);
     }
   }
 });
@@ -52,7 +60,7 @@ export default Vue.extend({
   text-align: center;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .song-card > figure > img {
   display: block;
