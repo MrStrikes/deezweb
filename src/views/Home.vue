@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <song-card :track="favorites"/>
+    <div class="song">
+      <song-card :track="favorites"/>
+    </div>
+    <a class="button is-info" @click.prevent="shuffleFavorites()">Info</a>
   </div>
 </template>
 
@@ -17,15 +20,17 @@ export default Vue.extend({
   },
   data() {
     return {
-      favorites: [] as any[]
+      favorites: [] as any[],
+      allTracks: [] as any[]
     };
   },
   methods: {
     async setFavorites() {
+      await (this.allTracks = getFavorites());
       return await (this.favorites = getFavorites());
     },
     async shuffleFavorites() {
-      return await (this.favorites = this.favorites[shuffleFavorites()]);
+      return await (this.favorites = this.allTracks[shuffleFavorites()]);
     }
   },
   async created() {
@@ -38,7 +43,7 @@ export default Vue.extend({
 </script>
 
 <style>
-.home {
+.song {
   margin: 10px 100px;
   display: flex;
   justify-content: center;
