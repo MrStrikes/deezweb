@@ -2,9 +2,7 @@
   <article class="song-card">
     <figure>
       <img :src="track.album.cover" :alt="`Cover of the album or single ${track.album.title}`">
-      <!--<font-awesome-icon :icon="['fas', 'star']" @click.prevent="saveToFavorites(track)"/>-->
-      <!--<font-awesome-icon :icon="['fas', 'star']" @click.prevent="isInFavorites(track)"/>-->
-      <font-awesome-icon :icon="['fas', 'star']" @click.prevent="removeFromFavorites"/>
+      <font-awesome-icon :icon="['fas', 'star']" @click.prevent="checkStorage(track)"/>
     </figure>
     <div>
       <h1 v-if="track.title !== track.album.title">Album: {{ track.album.title }}</h1>
@@ -33,16 +31,25 @@ export default Vue.extend({
     index: Number
   },
   methods: {
+    isInFavorites(track: Object) {
+      return isInFavorites(track);
+    },
     async saveToFavorites(trackData: any) {
       let faved: [AlbumInterface] = getFavorites();
       faved.push(trackData);
       await saveToFavorites(faved);
     },
-    async isInFavorites(track: Object) {
-      let data = isInFavorites(track);
-    },
     async removeFromFavorites() {
       await this.$emit("remove-favorite", this.index);
+    },
+    async checkStorage(track: any) {
+      let result = this.isInFavorites(track);
+      console.log(result);
+      if (!result) {
+        return await this.saveToFavorites(this.track);
+      } else {
+        return await this.removeFromFavorites();
+      }
     }
   }
 });
