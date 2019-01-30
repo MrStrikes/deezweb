@@ -3,7 +3,7 @@
     <div class="song">
       <song-card :track="favorites"/>
     </div>
-    <a class="button is-info" @click.prevent="shuffleFavorites()">Info</a>
+    <a class="button is-info" @click.prevent="shuffleFavorites()">Get another random song</a>
   </div>
 </template>
 

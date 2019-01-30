@@ -28,7 +28,10 @@ export default Vue.extend({
   name: "SongCard",
   props: {
     track: Object as () => AlbumInterface,
-    index: Number
+    index: {
+      type: Number,
+      required: false
+    }
   },
   methods: {
     isInFavorites(track: Object) {
