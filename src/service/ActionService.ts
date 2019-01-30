@@ -10,10 +10,10 @@ export function getFavorites(): [AlbumInterface] {
   return JSON.parse(localStorage.getItem("favorites")!) || [];
 }
 
-export async function isInFavorites(song: any) {
+export function isInFavorites(song: any): boolean {
   const favorites = JSON.stringify(getFavorites());
   const stringedSong: string = JSON.stringify(song);
-  return await favorites.includes(stringedSong);
+  return favorites.includes(stringedSong);
 }
 
 export async function removeFromFavorites(index: number) {
