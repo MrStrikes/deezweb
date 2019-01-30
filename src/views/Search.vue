@@ -18,7 +18,7 @@
       </b-field>
     </section>
     <div class="songs">
-      <song-card v-for="(track, index) in result" :key="index" :track="track"/>
+      <song-card v-for="(track, index) in result" :key="index" :track="track" :index="index"/>
     </div>
   </div>
 </template>

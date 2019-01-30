@@ -1,6 +1,12 @@
 <template>
   <div class="songs">
-    <song-card v-for="(favorite, index) in favorites" :key="index" :track="favorite"/>
+    <song-card
+      v-for="(favorite, index) in favorites"
+      :key="index"
+      :track="favorite"
+      :index="index"
+      @remove-favorite="removeFavorite(index)"
+    />
   </div>
 </template>
 
@@ -8,7 +14,7 @@
 import Vue from "vue";
 import SongCard from "@/components/SongCard.vue";
 import { AlbumInterface } from "@/interfaces/AlbumInterface";
-import { getFavorites } from "@/service/ActionService";
+import { getFavorites, removeFromFavorites } from "@/service/ActionService";
 
 export default Vue.extend({
   components: {
@@ -22,6 +28,10 @@ export default Vue.extend({
   methods: {
     async getFavoriteSongs() {
       this.favorites = getFavorites();
+    },
+    async removeFavorite(index: number) {
+      await this.favorites.splice(index, 1);
+      return await removeFromFavorites(index);
     }
   },
   async created() {

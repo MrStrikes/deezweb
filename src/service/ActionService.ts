@@ -18,6 +18,6 @@ export async function isInFavorites(song: any) {
 
 export async function removeFromFavorites(index: number) {
   const favorites = getFavorites();
-  const data = favorites.splice(index, 1);
+  favorites.splice(index, 1);
   return await saveToFavorites(favorites);
 }
