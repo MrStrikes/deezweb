@@ -20,24 +20,22 @@ export default Vue.extend({
   },
   data() {
     return {
-      favorites: [] as any[],
+      favorites: Object,
       allTracks: [] as any[]
     };
   },
   methods: {
-    async setFavorites() {
-      await (this.allTracks = getFavorites());
-      return await (this.favorites = getFavorites());
+    setFavorites() {
+      return (this.allTracks = getFavorites());
     },
-    async shuffleFavorites() {
-      return await (this.favorites = this.allTracks[shuffleFavorites()]);
+    shuffleFavorites() {
+      const shuffled = this.allTracks[shuffleFavorites()];
+      return (this.favorites = shuffled);
     }
   },
-  async created() {
-    await this.setFavorites();
-  },
-  async mounted() {
-    await this.shuffleFavorites();
+  created() {
+    this.setFavorites();
+    this.shuffleFavorites();
   }
 });
 </script>

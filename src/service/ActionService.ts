@@ -24,6 +24,5 @@ export async function removeFromFavorites(index: number) {
 
 export function shuffleFavorites(): number {
   const favorites = getFavorites();
-  const randomSong: number = Math.floor(Math.random() * favorites.length);
-  return randomSong;
+  return Math.floor(Math.random() * favorites.length);
 }
