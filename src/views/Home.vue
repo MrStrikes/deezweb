@@ -3,7 +3,8 @@
     <div class="song">
       <song-card :track="favorites"/>
     </div>
-    <a class="button is-info" @click.prevent="shuffleFavorites()">Get another random song</a>
+    <a class="button is-info" v-if="allTracks.length != 0" @click.prevent="shuffleFavorites()">Get another random song</a>
+    <h1 v-if="allTracks.length == 0">No song available</h1>
   </div>
 </template>
 
